@@ -1,0 +1,39 @@
+[project]
+name = "backend-challenge-python"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [{ name = "AmielRostan", email = "amielrostan1@gmail.com" }]
+requires-python = ">=3.13"
+dependencies = [
+    "alembic>=1.20.0",
+    "fastapi[standard]>=0.143.0",
+    "httpx>=0.28.1",
+    "psycopg[binary]>=3.3.6",
+    "pwdlib[argon2]>=0.3.1",
+    "pydantic-settings>=2.15.0",
+    "sqlalchemy>=2.1.4",
+]
+
+[project.scripts]
+backend-challenge-python = "backend_challenge_python:main"
+
+[build-system]
+requires = ["uv_build>=0.12.24,<0.13.0"]
+build-backend = "uv_build"
+
+[tool.fastapi]
+entrypoint = "backend_challenge_python.main:app"
+
+[tool.uv]
+package = true
+
+[tool.pyrefly]
+search-path = ["src", "."]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+    "pytest-cov>=7.1.0",
+    "ruff>=0.17.0",
+]

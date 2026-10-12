@@ -1,0 +1,45 @@
+services:
+  db:
+    image: postgres:15
+    container_name: backend-challenge-python-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: usersdb
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./docker/init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d usersdb"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: postgresql+psycopg://postgres:postgres@db:5432/usersdb
+      TEST_DATABASE_URL: postgresql+psycopg://postgres:postgres@db:5432/usersdb_test
+      POKEMON_API_URL: https://pokeapi.co/api/v2
+    depends_on:
+      db:
+        condition: service_healthy
+  test:
+    build: .
+    profiles:
+      - test
+    environment:
+      DATABASE_URL: postgresql+psycopg://postgres:postgres@db:5432/usersdb
+      TEST_DATABASE_URL: postgresql+psycopg://postgres:postgres@db:5432/usersdb_test
+      POKEMON_API_URL: https://pokeapi.co/api/v2
+    depends_on:
+      db:
+        condition: service_healthy
+    command: ["sh", "-c", "uv sync --frozen && uv run pytest -v"]
+
+volumes:
+  postgres_data:
