@@ -6,6 +6,8 @@ Built with **Python 3.13, FastAPI, PostgreSQL 15, SQLAlchemy, Alembic, and HTTPX
 
 [![CircleCI](https://dl.circleci.com/status-badge/img/gh/AmielRostan/Backend-challenge-python/tree/master.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/AmielRostan/Backend-challenge-python/tree/master)
 
+[![Coverage Status](https://coveralls.io/repos/github/AmielRostan/Backend-challenge-python/badge.svg?branch=main)](https://coveralls.io/github/AmielRostan/Backend-challenge-python?branch=main)
+
 ## Getting Started
 
 **Requirements:** Docker Desktop with Docker Compose.
