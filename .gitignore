@@ -18,6 +18,7 @@ wheels/
 .pytest_cache/
 .coverage
 .coverage.*
+coverage.lcov
 htmlcov/
 
 # Ruff

@@ -1,6 +1,9 @@
 
 version: 2.1
 
+orbs:
+  coveralls: coveralls/coveralls@2.2.5
+
 jobs:
   test:
     docker:
@@ -35,7 +38,9 @@ jobs:
 
       - run:
           name: Run tests with coverage
-          command: uv run pytest --cov=backend_challenge_python --cov-report=term-missing
+          command: uv run pytest --cov=backend_challenge_python --cov-report=term-missing --cov-report=lcov:coverage.lcov
+      - coveralls/upload:
+          coverage_file: coverage.lcov
 
 workflows:
   build-and-test:
