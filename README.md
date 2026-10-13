@@ -4,6 +4,8 @@ REST API for managing users and retrieving their associated Pokémon data from P
 
 Built with **Python 3.13, FastAPI, PostgreSQL 15, SQLAlchemy, Alembic, and HTTPX**. Uses Pydantic for validation, Argon2 for password hashing, and Pytest for automated testing.
 
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/AmielRostan/Backend-challenge-python/tree/master.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/AmielRostan/Backend-challenge-python/tree/master)
+
 ## Getting Started
 
 **Requirements:** Docker Desktop with Docker Compose.
